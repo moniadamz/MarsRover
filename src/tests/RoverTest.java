@@ -2,6 +2,7 @@ package tests;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,10 +50,10 @@ Rover rover;
 		assertEquals("(5, 6, N)", rover.toString());
 	}
 	
-	@Test(expected = MinhaException.class)
-	public void control()throws Exception {
-		rover = new Rover(5, 5, 0, 0, 'N', 9, 10);
-		rover.control('M');
+	@Test
+	public void control(){
+		rover = new Rover(5, 5, 0, 0, 'R', 9, 10);
+		assertThrows(MinhaException.class, ()->{rover.control('M');});
 	}
 	
 	@Test

@@ -1,7 +1,6 @@
 package common;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -32,6 +31,7 @@ public class MarsRover {
 					}
 				}
 			}
+			
 			int plateauInicioX = Integer.valueOf(commands.get(0));
 			int plateauInicioY = Integer.valueOf(commands.get(1));
 			int rover1InicioX = Integer.valueOf(commands.get(2));
@@ -43,17 +43,16 @@ public class MarsRover {
 			
 			 plateau = new Plateau(plateauInicioX, plateauInicioY);
 			 
-				rover1 = new Rover(rover1InicioX, rover1InicioY, plateau.getLowerLeftY(),plateau.getLowerLeftX(), direction1, plateau.getupperRightX(),plateau.getupperRightY());
+				rover1 = new Rover(rover1InicioX, rover1InicioY, Plateau.getLowerLeftY(),Plateau.getLowerLeftX(), direction1, plateau.getupperRightX(),plateau.getupperRightY());
 				plateau.insertRover(rover1);
 				
-				rover2 = new Rover(rover2InicioX, rover2InicioY, plateau.getLowerLeftY(),plateau.getLowerLeftX(), direction2, plateau.getupperRightX(),plateau.getupperRightY());
+				rover2 = new Rover(rover2InicioX, rover2InicioY, Plateau.getLowerLeftY(),Plateau.getLowerLeftX(), direction2, plateau.getupperRightX(),plateau.getupperRightY());
 				plateau.insertRover(rover2);
 			 
 				for(int i = 5; i <= 13 ; i++) {
 					try {
 						rover1.control(commands.get(i).charAt(0));
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -62,7 +61,6 @@ public class MarsRover {
 					try {
 						rover2.control(commands.get(i).charAt(0));
 					} catch (Exception e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -72,15 +70,9 @@ public class MarsRover {
 				String output = (rover1.toString() + "\n" + rover2.toString());
 		            arquivo.write(output);
 		            arquivo.close();
-				
-				
-				
-//				BufferedWriter bw = new BufferedWriter(new FileWriter(new File("src/Output.txt")));
-			//	bw.write(output);
-					
+						
 			rd.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 		}
